@@ -21,7 +21,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-﻿using System.Linq;
+using System.Linq;
+using System.Reflection;
 using UnityEngine;
 using UnityEditor;
 
@@ -33,7 +34,7 @@ namespace SpriteAnimationPreview
 		protected override Editor GetBaseEditor()
 		{
 			Editor editor = null;
-			var baseType = Types.GetType("UnityEditor.AnimationClipEditor", "UnityEditor.dll");
+			var baseType = Assembly.Load("UnityEditor.dll").GetType("UnityEditor.AnimationClipEditor");
 			CreateCachedEditor(targets, baseType, ref editor);
 			return editor;
 		}
